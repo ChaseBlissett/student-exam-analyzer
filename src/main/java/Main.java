@@ -21,7 +21,11 @@ public class Main {
         System.out.println("Mean: " + student.getMean());
         System.out.println("Median: " + student.getMedian());
         System.out.println("Mode: " + student.getMode());
+        System.out.println("Min: " + student.getMin());
+        System.out.println("Max: " + student.getMax());
+        System.out.println("Range: " + student.getRange());
 
+        // temporary test case
         Student test = new Student();
         List<Double> testScores = new ArrayList<>();
         testScores.add(1.0);
@@ -31,6 +35,10 @@ public class Main {
         testScores.add(3.0);
         test.setScores(testScores);
         System.out.println(test.getMode());
+        System.out.println("min: " + test.getMin());
+        System.out.println("max: " + test.getMax());
+        System.out.println("range: " + test.getRange());
+
 
     }
 

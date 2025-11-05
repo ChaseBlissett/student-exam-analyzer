@@ -83,10 +83,41 @@ public class Student {
 
         if (modes.size() == this.scores.size()) {
             System.out.println("No mode in scores");
-            modes.clear();
-            return modes;
+            return Collections.emptyList();
         }
 
         return modes;
     }
+
+    public double getMin() {
+        if (this.scores == null || this.scores.isEmpty()) {
+            System.out.println("No min in scores");
+            return -1;
+        }
+        List<Double> sortedScores = this.scores;
+        Collections.sort(sortedScores);
+        double min = scores.getFirst();
+        return Math.round(min * 100) / 100.0;
+
+    }
+
+    public double getMax() {
+        if (this.scores == null || this.scores.isEmpty()) {
+            System.out.println("No min in scores");
+            return -1;
+        }
+
+        double max = 0;
+        for (double score : this.scores) {
+            if (max < score) {
+                max = score;
+            }
+        }
+        return Math.round(max * 100.0) / 100.0;
+    }
+
+    public double getRange() {
+        return this.getMax() - this.getMin();
+    }
+
 }
