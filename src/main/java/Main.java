@@ -24,6 +24,8 @@ public class Main {
         System.out.println("Min: " + student.getMin());
         System.out.println("Max: " + student.getMax());
         System.out.println("Range: " + student.getRange());
+        System.out.println("Population Std.dev " + student.getPopulationStandardDeviation());
+        System.out.println("Sample Std.dev " + student.getSampleStandardDeviation());
 
         // temporary test case
         Student test = new Student();
@@ -38,6 +40,9 @@ public class Main {
         System.out.println("min: " + test.getMin());
         System.out.println("max: " + test.getMax());
         System.out.println("range: " + test.getRange());
+        System.out.println("mean: " + test.getMean());
+        System.out.println("Population Std.dev " + test.getPopulationStandardDeviation());
+        System.out.println("Sample Std.dev " + test.getSampleStandardDeviation());
 
 
     }

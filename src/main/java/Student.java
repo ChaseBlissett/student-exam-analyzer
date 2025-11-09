@@ -49,10 +49,9 @@ public class Student {
         double middleIndexDouble = scores.size() / 2.0;
         int middleIndex = (int) middleIndexDouble;
         if (middleIndexDouble % 2 == 0) {
-            double median = ((sortedList.get(middleIndex)) + sortedList.get(middleIndex -1)) /2;
+            double median = ((sortedList.get(middleIndex)) + sortedList.get(middleIndex - 1)) / 2;
             return Math.round(median);
-            }
-        else {
+        } else {
             double median = sortedList.get(middleIndex);
             return Math.round(median * 100.0) / 100.0;
         }
@@ -71,7 +70,7 @@ public class Student {
         int maxCount = 0;
         for (int count : counts.values()) {
             if (count > maxCount) {
-                maxCount =  count;
+                maxCount = count;
             }
         }
 
@@ -118,6 +117,26 @@ public class Student {
 
     public double getRange() {
         return this.getMax() - this.getMin();
+    }
+
+    public double getPopulationStandardDeviation() {
+        double mean = this.getMean();
+        double sumOfMeanMinusStdDevSquared = 0;
+        for (double score : scores) {
+            double meanMinusStdDevSquared = Math.pow(score - mean, 2);
+            sumOfMeanMinusStdDevSquared += meanMinusStdDevSquared;
+        }
+        return Math.sqrt(sumOfMeanMinusStdDevSquared/this.scores.size());
+    }
+
+    public double getSampleStandardDeviation() {
+        double mean = this.getMean();
+        double sumOfMeanMinusStdDevSquared = 0;
+        for (double score : scores) {
+            double meanMinusStdDevSquared = Math.pow(score - mean, 2);
+            sumOfMeanMinusStdDevSquared += meanMinusStdDevSquared;
+        }
+        return Math.sqrt(sumOfMeanMinusStdDevSquared/(this.scores.size() - 1));
     }
 
 }
