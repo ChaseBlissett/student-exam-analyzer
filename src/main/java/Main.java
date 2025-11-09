@@ -24,8 +24,10 @@ public class Main {
         System.out.println("Min: " + student.getMin());
         System.out.println("Max: " + student.getMax());
         System.out.println("Range: " + student.getRange());
-        System.out.println("Population Std.dev " + student.getPopulationStandardDeviation());
-        System.out.println("Sample Std.dev " + student.getSampleStandardDeviation());
+        System.out.println("Population Std.dev " + student.getPopulationStandardDeviationOfScores());
+        System.out.println("Sample Std.dev " + student.getSampleStandardDeviationOfScores());
+        System.out.println("Unusual scores: " + student.findUnusualScores());
+        System.out.println("Is 100 unusual: " + student.isUnusualScore(93));
 
         // temporary test case
         Student test = new Student();
@@ -41,9 +43,10 @@ public class Main {
         System.out.println("max: " + test.getMax());
         System.out.println("range: " + test.getRange());
         System.out.println("mean: " + test.getMean());
-        System.out.println("Population Std.dev " + test.getPopulationStandardDeviation());
-        System.out.println("Sample Std.dev " + test.getSampleStandardDeviation());
-
+        System.out.println("Population Std.dev: " + test.getPopulationStandardDeviationOfScores());
+        System.out.println("Sample Std.dev: " + test.getSampleStandardDeviationOfScores());
+        System.out.println("Unusual scores: " + test.findUnusualScores());
+        System.out.println("Is 100 unusual: " + test.isUnusualScore(100));
 
     }
 

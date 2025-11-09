@@ -1,4 +1,3 @@
-import java.sql.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -119,7 +118,7 @@ public class Student {
         return this.getMax() - this.getMin();
     }
 
-    public double getPopulationStandardDeviation() {
+    public double getPopulationStandardDeviationOfScores() {
         double mean = this.getMean();
         double sumOfMeanMinusStdDevSquared = 0;
         for (double score : scores) {
@@ -129,7 +128,8 @@ public class Student {
         return Math.sqrt(sumOfMeanMinusStdDevSquared/this.scores.size());
     }
 
-    public double getSampleStandardDeviation() {
+    // if we don't have the full population of scores for the student
+    public double getSampleStandardDeviationOfScores() {
         double mean = this.getMean();
         double sumOfMeanMinusStdDevSquared = 0;
         for (double score : scores) {
@@ -137,6 +137,30 @@ public class Student {
             sumOfMeanMinusStdDevSquared += meanMinusStdDevSquared;
         }
         return Math.sqrt(sumOfMeanMinusStdDevSquared/(this.scores.size() - 1));
+    }
+
+    public List<Double> findUnusualScores() {
+        if (scores == null || scores.isEmpty()) return scores;
+
+        List<Double> unusualScores = new ArrayList<>();
+
+        // 95% of data should fall between two standard deviations.
+        // If a value is outside two standard deviations then it is unusual
+        double bottomInterval = this.getMean() - (2 * this.getPopulationStandardDeviationOfScores());
+        double topInterval = this.getMean() + (2 * this.getPopulationStandardDeviationOfScores());
+
+        for(double score : scores) {
+            if (score < bottomInterval || score > topInterval) {
+                unusualScores.add(score);
+            }
+        }
+        return unusualScores;
+    }
+
+    public boolean isUnusualScore(double score) {
+        double bottomInterval = this.getMean() - (2 * this.getPopulationStandardDeviationOfScores());
+        double topInterval = this.getMean() + (2 * this.getPopulationStandardDeviationOfScores());
+        return score < bottomInterval || score > topInterval;
     }
 
 }
